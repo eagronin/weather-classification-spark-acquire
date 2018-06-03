@@ -110,15 +110,15 @@ For example, air_temp_9am has only 1,090 rows:
 df.describe('air_temp_9am').show()
 ```
 
-+-------+------------------+
+
 |summary|      air_temp_9am|
-+-------+------------------+
+| --- | --- |
 |  count|              1090|
 |   mean| 64.93300141287075|
 | stddev|11.175514003175877|
 |    min|36.752000000000685|
 |    max| 98.90599999999992|
-+-------+------------------+
+
 
 This means that five rows in air_temp_9am have missing values.
 
