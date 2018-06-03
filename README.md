@@ -28,7 +28,7 @@ Each row in daily_weather.csv captures weather data for a separate day. Each row
 
 The following code imports **daily_weather.csv** from a folder on the cloud:
 
-```
+```python
 from pyspark.sql import SQLContext
 sqlContext = SQLContext(sc)
 
@@ -106,7 +106,7 @@ The summary statistics table indicates that some of the features have less than 
 
 For example, air_temp_9am has only 1,090 rows:  
 
-```
+```python
 df.describe('air_temp_9am').show()
 ```
 
@@ -123,7 +123,7 @@ This means that five rows in air_temp_9am have missing values.
 
 We can drop all the rows missing a value in any feature as follows:
 
-```
+```python
 removeAllDF.count()
 ```
 
@@ -131,7 +131,7 @@ This leaves us with 1,064 rows in dataframe removeAllDF, as can be verified usin
 
 Looking just at the statistics for the air temperature at 9am:
 
-```
+```python
 removeAllDF.describe('air_temp_9am').show()
 ```
 
@@ -148,7 +148,7 @@ After the number of observations for air_temp_9am declined from 1,090 to 1,064, 
 
 Alternatively, we can replace missing values in each feature with the mean value for that feature:
 
-```
+```python
 from pyspark.sql.functions import avg
 
 imputeDF = df
@@ -177,7 +177,7 @@ relative_humidity_3pm 35.14
 
 The summary statistics for air_temp_9am are now as follows:
 
-```
+```python
 imputeDF.describe('air_temp_9am').show()
 ```
 
@@ -193,7 +193,7 @@ The number of rows in air_temp_9am is now 1,095 (increased from 1,090) which mea
 
 In the analysis performed in the next section, we will use the version of the data in which all the missing values have been dropped:
 
-```
+```python
 df = removeAllDF
 ```
 
@@ -209,7 +209,7 @@ The results are discussed in the [next section](https://eagronin.github.io/weath
 
 The following code defines a dataframe with the features used for the decision tree classifier.  It then create the target, a categorical variable to denote if the humidity is not low. If the value is less than 25%, then the categorical value is 0, otherwise the categorical value is 1.  Finally, the code aggregate the features used to make predictions into a single column using `VectorAssembler` and partition the data into training and test data: 
 
-```
+```python
 featureColumns = ['air_pressure_9am','air_temp_9am','avg_wind_direction_9am','avg_wind_speed_9am',
         'max_wind_direction_9am','max_wind_speed_9am','rain_accumulation_9am',
         'rain_duration_9am']
