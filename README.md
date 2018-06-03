@@ -15,56 +15,13 @@ Each row in daily_weather.csv captures weather data for a separate day. Each row
 | number | unique number for each row | NA |
 | air_pressure_9am | air pressure averaged over a period from 8:50am to 9:10am | hectopascals |
 | air_temp_9am | air temperature averaged over a period from 8:50am to 9:10am | degrees Fahrenheit |
+| avg_wind_direction_9am | wind direction averaged over a period from 8:50am to 9:10am | degrees, with 0 means coming from the North, and increasing clockwise |
+| avg_wind_speed_9am | wind speed averaged over a period from 8:50am to 9:10am | miles per hour |
+| max_wind_directon_9am | wind gust direction averaged over a period from 8:50am to 9:10am | degrees, with 0 being North and increasing clockwise |
+| max_wind_speed_9am | wind gust speed averaged over a period from 8:50am to 9:10am | miles per hour |
+| rain_accumulation_9am | amount of accumulated rain averaged over a period from 8:50am to 9:10am | millimeters |
+| rain_duration_9am | amount of time raining averaged over a period from 8:50am to 9:10am | seconds |
+| relative_humidity_9am | relative humidity averaged over a period from 8:50am to 9:10am | percent |
+| relative_humidity_3pm | relative humidity averaged over a period from 2:50pm to 3:10pm | percent |
 
 
-
-
-vg_wind_direction
-_9am
-am
-max_wind_direction
-_9am
-rain_accumulation_
-9am
-rain_duration_9am
-wind direction averaged over a
-period from 8:50am to 9:10am
-period from 8:50am to 9:10am
-over a period from 8:50am to
-9:10am
-egrees, with 0 means
-   coming from the North, and
- increasing clockwise
-     
-  avg_wind_speed_9
-ind speed averaged over a
-miles per hour
-         
-  wind gust direction averaged
-  over a period from 8:50am to
- 9:10am
-degrees, with 0 being North
- and increasing clockwise
-       
-  max_wind_speed_9
-  am
-wind gust speed averaged
-miles per hour
-         
-  amount of accumulated rain
-  averaged over a period from
- 8:50am to 9:10am
-      
-  amount of time raining
- averaged over a period from
- 8:50am to 9:10am
-millimeters
-  seconds
-       
-  relative_humidity_9
-  am
-relative humidity averaged
-over a period from 8:50am to
- 9:10am
-percent
-     
