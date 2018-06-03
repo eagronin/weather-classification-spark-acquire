@@ -21,16 +21,16 @@ Each row in daily_weather.csv captures weather data for a separate day. Each row
 
 
 
-| Variable | Description | Unit of Measure |
 
-| --- | --- |     
+| Command | Description | Description |
+| --- | --- | --- |
 | number | unique number for each row | NA |
 | air_pressure_9am | air pressure averaged over a period from 8:50am to 9:10am | hectopascals |
 | air_temp_9am | air temperature averaged over a period from 8:50am to 9:10am | degrees Fahrenheit |
 
 
 
-
+| Variable | Description | Unit of Measure |
 vg_wind_direction
 _9am
 am
