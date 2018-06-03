@@ -191,4 +191,39 @@ imputeDF.describe('air_temp_9am').show()
 
 The number of rows in air_temp_9am is now 1,095 (increased from 1,090) which means that the feature no longer has missing values.
 
+In the analysis performed in the next section, we will use the version of the data in which all the missing values have been dropped:
 
+```
+df = removeAllDF
+```
+
+Next step: [Analysis](https://eagronin.github.io/weather-classification-spark-analyze/)
+
+# Analysis
+
+This section describes the analysis of weather patterns in San Diego, CA.  Specifically, we build and evaluate the performance of a decision tree for predicting low humidity days.  Such low humidity days increase the risk of wildfires and, therefore, predicting such days is important for providing a timely warning to the residents and appropriate authorities.
+
+Exploration and cleaning of the data are discussed in the [previous section](https://eagronin.github.io/weather-classification-spark-prepare/)
+
+The results are discussed in the [next section](https://eagronin.github.io/weather-classification-spark-report/)
+
+The following code defines a dataframe with the features used for the decision tree classifier.  It then create the target, a categorical variable to denote if the humidity is not low. If the value is less than 25%, then the categorical value is 0, otherwise the categorical value is 1.  Finally, the code aggregate the features used to make predictions into a single column using `VectorAssembler` and partition the data into training and test data: 
+
+```
+featureColumns = ['air_pressure_9am','air_temp_9am','avg_wind_direction_9am','avg_wind_speed_9am',
+        'max_wind_direction_9am','max_wind_speed_9am','rain_accumulation_9am',
+        'rain_duration_9am']
+
+binarizer = Binarizer(threshold = 24.99999, inputCol = "relative_humidity_3pm", outputCol="label")
+binarizedDF = binarizer.transform(df)
+
+assembler = VectorAssembler(inputCols = featureColumns, outputCol = "features")
+assembled = assembler.transform(binarizedDF)
+(trainingData, testData) = assembled.randomSplit([.7,.3], seed = 13234)
+```
+
+Next, we careate and train a decision tree:
+
+```
+
+```
