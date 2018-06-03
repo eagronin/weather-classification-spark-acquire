@@ -2,6 +2,8 @@
 
 This section describes and imports the dataset **daily_weather.csv** to analyze weather patterns in San Diego, CA.  Specifically, we will build a decision tree for predicting low humidity days, which increase the risk of wildfires.
 
+The [next section](https://eagronin.github.io/weather-classification-spark-prepare/) explores and cleans the data.
+
 The file **daily_weather.csv** was downloaded from the Coursera website and saved on Cloudera cloud.
 
 The  is a comma-separated file that contains weather data. This data comes from a weather station located in San Diego, CA. The weather station is equipped with sensors that capture weather-related measurements such as air temperature, air pressure, and relative humidity. Data was collected for a period of three years, from September 2011 to September 2014, to ensure that sufficient data for different seasons and weather conditions is captured.
@@ -35,15 +37,20 @@ df = sqlContext.read.load('file:///home/cloudera/Downloads/big-data-4/daily_weat
                           header='true',inferSchema='true')
 ```
 
-Then we output feature names, the data type for each feature and summary statistics:
+Nest step: [Data Preparation](https://eagronin.github.io/weather-classification-spark-prepare/)
 
-```
-df.columns
-df.printSchema()
-df.describe().toPandas().transpose()
-```
+# Data Preparation
 
-The output is as follows:
+This section explores and cleans the data to prepare it for the analysis of weather patterns in San Diego, CA.  Specifically, in the [next section](https://eagronin.github.io/weather-classification-spark-analyze/) we will build a decision tree for predicting low humidity days, which increase the risk of wildfires.
+
+The dataset is described and imported in the [previous section](https://eagronin.github.io/weather-classification-spark-acquire/)
+
+The analysis is described in the [next section](https://eagronin.github.io/weather-classification-spark-analyze/)
+
+## Data Exploration
+The **daily_weather.csv** dataset has 11 features and 1,095 rows (or samples) as can be verified using `len(df.columns)` and `df.count()` commands, respectively.
+
+To explore the dataset, we output feature names using `df.columns`, the data type for each feature using `df.printSchema()` and summary statistics using `df.describe().toPandas().transpose()`.  The output is as follows:
 
 Feature names
 
@@ -94,6 +101,98 @@ Summary statistics
 | relative_humidity_9am |	1095 |	34.24 |	25.47 |	6.09 |	92.62 |
 | relative_humidity_3pm |	1095 |	35.34 |	22.52 |	5.30 |	92.25 |
 
+## Handling Missing Values
+The summary statistics table indicates that some of the features have less than 1,095 rows (the total number of rows in the dataset).  
 
+For example, air_temp_9am has only 1,090 rows:  
+
+```
+df.describe('air_temp_9am').show()
+```
+
++-------+------------------+
+|summary|      air_temp_9am|
++-------+------------------+
+|  count|              1090|
+|   mean| 64.93300141287075|
+| stddev|11.175514003175877|
+|    min|36.752000000000685|
+|    max| 98.90599999999992|
++-------+------------------+
+
+This means that five rows in air_temp_9am have missing values.
+
+We can drop all the rows missing a value in any feature as follows:
+
+```
+removeAllDF.count()
+```
+
+This leaves us with 1,064 rows in dataframe removeAllDF, as can be verified using `removeAllDF.count()`.  
+
+Looking just at the statistics for the air temperature at 9am:
+
+```
+removeAllDF.describe('air_temp_9am').show()
+```
+
++-------+------------------+
+|summary|      air_temp_9am|
++-------+------------------+
+|  count|              1064|
+|   mean| 65.02260949558739|
+| stddev|11.168033449415699|
+|    min|36.752000000000685|
+|    max| 98.90599999999992|
++-------+------------------+
+
+After the number of observations for air_temp_9am declined from 1,090 to 1,064, the mean and standard deviation of this feature are still close the original values: mean is 64.933 vs. 65.022, and standard deviation is 11.175 vs. 11.168.
+
+Alternatively, we can replace missing values in each feature with the mean value for that feature:
+
+```
+from pyspark.sql.functions import avg
+
+imputeDF = df
+
+for x in imputeDF.columns:
+    meanValue = removeAllDF.agg(avg(x)).first()[0]
+    print(x, meanValue)
+    imputeDF = imputeDF.na.fill(meanValue, [x])
+```
+
+This code produces the following output of the mean values for each feature:
+
+```
+number 545.00
+air_pressure_9am 918.90
+air_temp_9am 65.02
+avg_wind_direction_9am 142.30
+avg_wind_speed_9am 5.48
+max_wind_direction_9am 148.48
+max_wind_speed_9am 6.99
+rain_accumulation_9am 0.18
+rain_duration_9am 266.39
+relative_humidity_9am 34.07
+relative_humidity_3pm 35.14
+```
+
+The summary statistics for air_temp_9am are now as follows:
+
+```
+imputeDF.describe('air_temp_9am').show()
+```
+
++-------+------------------+
+|summary|      air_temp_9am|
++-------+------------------+
+|  count|              1095|
+|   mean| 64.93341058219822|
+| stddev|11.149948199920226|
+|    min|36.752000000000685|
+|    max| 98.90599999999992|
++-------+------------------+
+
+The number of rows in air_temp_9am is now 1,095 (increased from 1,090) which means that the feature no longer has missing values.
 
 
