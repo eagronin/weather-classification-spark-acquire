@@ -110,7 +110,6 @@ For example, air_temp_9am has only 1,090 rows:
 df.describe('air_temp_9am').show()
 ```
 
-
 |summary|      air_temp_9am|
 | --- | --- |
 |  count|              1090|
@@ -136,15 +135,14 @@ Looking just at the statistics for the air temperature at 9am:
 removeAllDF.describe('air_temp_9am').show()
 ```
 
-+-------+------------------+
 |summary|      air_temp_9am|
-+-------+------------------+
+| --- | --- |
 |  count|              1064|
 |   mean| 65.02260949558739|
 | stddev|11.168033449415699|
 |    min|36.752000000000685|
 |    max| 98.90599999999992|
-+-------+------------------+
+
 
 After the number of observations for air_temp_9am declined from 1,090 to 1,064, the mean and standard deviation of this feature are still close the original values: mean is 64.933 vs. 65.022, and standard deviation is 11.175 vs. 11.168.
 
@@ -183,15 +181,13 @@ The summary statistics for air_temp_9am are now as follows:
 imputeDF.describe('air_temp_9am').show()
 ```
 
-+-------+------------------+
 |summary|      air_temp_9am|
-+-------+------------------+
+| --- | --- |
 |  count|              1095|
 |   mean| 64.93341058219822|
 | stddev|11.149948199920226|
 |    min|36.752000000000685|
 |    max| 98.90599999999992|
-+-------+------------------+
 
 The number of rows in air_temp_9am is now 1,095 (increased from 1,090) which means that the feature no longer has missing values.
 
