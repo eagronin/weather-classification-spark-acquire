@@ -113,10 +113,10 @@ df.describe('air_temp_9am').show()
 |summary|      air_temp_9am|
 | --- | --- |
 |  count|              1090|
-|   mean| 64.93300141287075|
-| stddev|11.175514003175877|
-|    min|36.752000000000685|
-|    max| 98.90599999999992|
+|   mean| 64.93|
+| stddev|11.17|
+|    min|36.75|
+|    max| 98.90|
 
 
 This means that five rows in air_temp_9am have missing values.
@@ -138,10 +138,10 @@ removeAllDF.describe('air_temp_9am').show()
 |summary|      air_temp_9am|
 | --- | --- |
 |  count|              1064|
-|   mean| 65.02260949558739|
-| stddev|11.168033449415699|
-|    min|36.752000000000685|
-|    max| 98.90599999999992|
+|   mean| 65.02|
+| stddev|11.16|
+|    min|36.75|
+|    max| 98.90|
 
 
 After the number of observations for air_temp_9am declined from 1,090 to 1,064, the mean and standard deviation of this feature are still close the original values: mean is 64.933 vs. 65.022, and standard deviation is 11.175 vs. 11.168.
@@ -184,10 +184,10 @@ imputeDF.describe('air_temp_9am').show()
 |summary|      air_temp_9am|
 | --- | --- |
 |  count|              1095|
-|   mean| 64.93341058219822|
-| stddev|11.149948199920226|
-|    min|36.752000000000685|
-|    max| 98.90599999999992|
+|   mean| 64.93|
+| stddev|11.14|
+|    min|36.75|
+|    max| 98.90|
 
 The number of rows in air_temp_9am is now 1,095 (increased from 1,090) which means that the feature no longer has missing values.
 
