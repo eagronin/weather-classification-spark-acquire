@@ -10,7 +10,19 @@ Sensor measurements from the weather station were captured at one-minute interva
 
 Each row in daily_weather.csv captures weather data for a separate day. Each row consists of the following variables:
 
+
+| Command | Description |
+| --- | --- |
+| git status | List all new or modified files |
+| git diff | Show file differences that haven't been staged |
+
+
+
+
+
+
 | Variable | Description | Unit of Measure |
+
 | --- | --- |     
 | number | unique number for each row | NA |
        
