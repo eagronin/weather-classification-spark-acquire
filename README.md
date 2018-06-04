@@ -237,7 +237,6 @@ predictions = model.transform(testData)
 predictions.select("prediction", "label").show(20)
 ```
 
-| --- | --- |
 | prediction | label |
 | --- | --- |
 |       1.0|  1.0|
