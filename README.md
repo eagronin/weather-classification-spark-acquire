@@ -224,6 +224,48 @@ assembled = assembler.transform(binarizedDF)
 
 Next, we careate and train a decision tree:
 
+```python
+dt = DecisionTreeClassifier(labelCol = "label", featuresCol = "features", maxDepth = 5, minInstancesPerNode = 20, impurity = "gini")
+pipeline = Pipeline(stages = [dt])
+model = pipeline.fit(trainingData)
 ```
 
+Let's make predictions for the test data and compare the target (or label) with its prediction for the first 20 rows of the test dataset:
+
+```
+predictions = model.transform(testData)
+predictions.select("prediction", "label").show(20)
+```
+| --- |
+| prediction | label |
+| --- |
+|       1.0|  1.0|
+|       1.0|  1.0|
+|       1.0|  1.0|
+|       1.0|  1.0|
+|       1.0|  1.0|
+|       1.0|  1.0|
+|       1.0|  1.0|
+|       0.0|  0.0|
+|       0.0|  0.0|
+|       1.0|  1.0|
+|       1.0|  1.0|
+|       1.0|  1.0|
+|       0.0|  0.0|
+|       1.0|  1.0|
+|       0.0|  1.0|
+|       1.0|  1.0|
+|       1.0|  1.0|
+|       1.0|  0.0|
+|       1.0|  1.0|
+|       0.0|  0.0|
+
+The output shows that out of the first 20 target values 18 values are predicted corretly.  
+
+The following code saves the predictions, which will be subsequently used for model evaluation:
+
+```
+predictions.select("prediction", "label").coalesce(1).write.save(path = "file:///home/cloudera/Downloads/big-data-4/predictions",
+                                                    format = "com.databricks.spark.csv",
+                                                    header = 'true')
 ```
