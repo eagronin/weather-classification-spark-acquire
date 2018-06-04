@@ -232,10 +232,11 @@ model = pipeline.fit(trainingData)
 
 Let's make predictions for the test data and compare the target (or label) with its prediction for the first 20 rows of the test dataset:
 
-```
+```python
 predictions = model.transform(testData)
 predictions.select("prediction", "label").show(20)
 ```
+
 | --- |
 | prediction | label |
 | --- |
@@ -262,9 +263,9 @@ predictions.select("prediction", "label").show(20)
 
 The output shows that out of the first 20 target values 18 values are predicted corretly.  
 
-The following code saves the predictions, which will be subsequently used for model evaluation:
+The following code saves the predictions, which are subsequently used for model evaluation:
 
-```
+```python
 predictions.select("prediction", "label").coalesce(1).write.save(path = "file:///home/cloudera/Downloads/big-data-4/predictions",
                                                     format = "com.databricks.spark.csv",
                                                     header = 'true')
