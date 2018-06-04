@@ -276,7 +276,7 @@ predictions.select("prediction", "label").coalesce(1).write.save(path = "file://
 
 The following code evaluates the performance of the decision tree:
 
-```
+```python
 from pyspark.ml.evaluation import MulticlassClassificationEvaluator
 
 predictions = sqlContext.read.load('file:///home/cloudera/Downloads/big-data-4/predictions', 
@@ -298,7 +298,7 @@ If we use the RDD attribute of predictions, we see this is an RDD of Rows: `pred
 
 Instead, we can map the RDD to tuple to get an RDD of numbers: `predictions.rdd.map(tuple).take(2)` outputs `[(1.0, 1.0), (1.0, 1.0)]`.  The following code then generates the confusion matrix for the decision tree classifier:
 
-```
+```python
 from pyspark.mllib.evaluation import MulticlassMetrics
 
 metrics = MulticlassMetrics(predictions.rdd.map(tuple))
