@@ -205,10 +205,7 @@ This section describes the analysis of weather patterns in San Diego, CA.  Speci
 
 Exploration and cleaning of the data are discussed in the [previous section](https://eagronin.github.io/weather-classification-spark-prepare/)
 
-The results are discussed in the [next section](https://eagronin.github.io/weather-classification-spark-report/)
-
 ## Training a Decision Tree Classifier
-
 The following code defines a dataframe with the features used for the decision tree classifier.  It then create the target, a categorical variable to denote if the humidity is not low. If the value is less than 25%, then the categorical value is 0, otherwise the categorical value is 1.  Finally, the code aggregate the features used to make predictions into a single column using `VectorAssembler` and partition the data into training and test data: 
 
 ```python
@@ -311,3 +308,5 @@ This results in the following confusion matrix:
 array([[ 134.,   53.],
        [  29.,  118.]])
 ```
+
+Previous step: [Data Preparation](https://eagronin.github.io/weather-classification-spark-prepare/)
