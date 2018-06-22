@@ -1,14 +1,18 @@
 # Data Acquisition
 
-This section describes and imports the dataset **daily_weather.csv** to analyze weather patterns in San Diego, CA.  Specifically, we will build a decision tree for predicting low humidity days, which are known to increase the risk of wildfires.
+# Overview
+
+This section describes and imports the **daily_weather.csv** dataset to analyze weather patterns in San Diego, CA.  Specifically, we will build a decision tree for predicting low humidity days, which are known to increase the risk of wildfires.
 
 The [next section](https://eagronin.github.io/weather-classification-spark-prepare/) explores and cleans the data.
+
+# Data
 
 The file **daily_weather.csv** was downloaded from the Coursera website and saved on the Cloudera cloud.
 
 This is a comma-separated file that contains weather data. The data comes from a weather station located in San Diego, CA. The weather station is equipped with sensors that capture weather-related measurements such as air temperature, air pressure, and relative humidity. Data was collected for a period of three years, from September 2011 to September 2014, to ensure that sufficient data for different seasons and weather conditions is captured.
 
-Sensor measurements from the weather station were captured at one-minute intervals. These measurements were then processed (outside of the analysis presented here) to generate values to describe daily weather. Since this dataset was created to classify low-humidity days vs. non-low-humidity days (that is, days with normal or high humidity), the variables included are weather measurements in the morning, with one measurement, namely relatively humidity, in the afternoon. The idea is to use the morning weather values to predict whether the day will be low-humidity or not based on the afternoon measurement of relatively humidity.
+Sensor measurements from the weather station were captured at one-minute intervals. These measurements were then transformed (outside of the analysis presented here) to daily samples. Since this dataset was created to classify low-humidity days vs. non-low-humidity days (that is, days with normal or high humidity), the variables included are weather measurements in the morning, with one measurement, namely relative humidity, in the afternoon. The idea is to use the morning weather values to predict whether the day will be low-humidity or not based on the afternoon measurement of relative humidity.
 
 Each row in daily_weather.csv captures weather data for a separate day. Each row consists of the following variables:
 
