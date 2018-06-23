@@ -6,6 +6,10 @@ This section describes and imports the **daily_weather.csv** dataset to analyze 
 
 The [next section](https://eagronin.github.io/weather-classification-spark-prepare/) explores and cleans the data.
 
+This project is based on assignments from Big Data Specialization by University of California San Diego on Coursera.
+
+The analysis for this project was performed in Spark.
+
 # Data
 
 The file **daily_weather.csv** was downloaded from the Coursera website and saved on the Cloudera cloud.
