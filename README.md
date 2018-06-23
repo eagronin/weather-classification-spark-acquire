@@ -1,6 +1,6 @@
 # Data Acquisition
 
-# Overview
+## Overview
 
 This section describes and imports the **daily_weather.csv** dataset to analyze weather patterns in San Diego, CA.  Specifically, we will build a decision tree for predicting low humidity days, which are known to increase the risk of wildfires.
 
@@ -10,7 +10,7 @@ This project is based on assignments from Big Data Specialization by University 
 
 The analysis for this project was performed in Spark.
 
-# Data
+## Data
 
 The file **daily_weather.csv** was downloaded from the Coursera website and saved on the Cloudera cloud.
 
