@@ -45,4 +45,4 @@ df = sqlContext.read.load('file:///home/cloudera/Downloads/big-data-4/daily_weat
                           header='true',inferSchema='true')
 ```
 
-Nest step: [Data Preparation](https://eagronin.github.io/weather-classification-spark-prepare/)
+Next step: [Data Preparation](https://eagronin.github.io/weather-classification-spark-prepare/)
